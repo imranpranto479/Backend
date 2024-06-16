@@ -8,7 +8,6 @@ const {
 } = require("../controllers/employee.controller");
 const {
   createEmployeeValidation,
-  getEmployeeByIdValidation,
   updateEmployeeValidation,
 } = require("../helpers/employee.validation");
 const validateRequest = require("../middlewares/validate.request");

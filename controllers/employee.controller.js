@@ -13,7 +13,7 @@ const createEmployee = async (req, res) => {
       message: "Employee info added successfully!",
     });
   } catch (error) {
-    res.status(500).json({error: error.message});
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -22,7 +22,7 @@ const getAllEmployee = async (req, res) => {
     const employees = await Employee.find();
     res.status(200).json(employees);
   } catch (error) {
-    res.status(500).json({error: error.message});
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -39,12 +39,11 @@ const getOneEmployee = async (req, res) => {
     };
     res.status(200).json(formattedEmployee);
   } catch (error) {
-    res.status(500).json({error: error.message});
+    res.status(500).json({ error: error.message });
   }
 };
 
 const updateEmployee = async (req, res) => {
-  
   const { firstName, lastName, phoneNumber } = req.body;
   try {
     const employee = await Employee.findById(req.params.id);
@@ -61,19 +60,18 @@ const updateEmployee = async (req, res) => {
   }
 };
 
-
 const toggleBlockEmployee = async (req, res) => {
-    try {
-        const employee = await Employee.findById(req.params.id);
-        if (!employee) {
-            return res.status(404).json({ message: 'Employee not found' });
-        }
-        employee.isBlocked = !employee.isBlocked;
-        await employee.save();
-        res.json(employee);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+  try {
+    const employee = await Employee.findById(req.params.id);
+    if (!employee) {
+      return res.status(404).json({ message: "Employee not found" });
     }
+    employee.isBlocked = !employee.isBlocked;
+    await employee.save();
+    res.json(employee);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 const deleteEmployee = async (req, res) => {

@@ -1,22 +1,14 @@
 const express = require("express");
-const employeeRouter = require('./routes/employee.route')
-const employeeController = require('./controllers/employee.controller')
-const mongoDbConnection = require('./config/db')
+const employeeRouter = require("./routes/employee.route");
+const mongoDbConnection = require("./config/db");
 
 const app = express();
-mongoDbConnection
+mongoDbConnection;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("/api/employees", employeeRouter)
-
-//api/get-employees :GET
-//api/getemployees/:id :GET
-//api/employees :POST
-//api/employees/:id :PATCH
-//api/employees/:id :DELETE
-
+app.use("/api/employees", employeeRouter);
 
 //route not found error
 app.use((req, res, next) => {
@@ -25,11 +17,10 @@ app.use((req, res, next) => {
   });
 });
 //handling server error
-app.use((err,req, res, next) => {
-    res.status(500).json({
-      message: "something broke",
-    });
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    message: "something broke",
   });
-  
+});
 
 module.exports = app;
